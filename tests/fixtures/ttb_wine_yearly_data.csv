@@ -1,0 +1,313 @@
+Year,Statistical_Group,Statistical_Category,Statistical_Detail,Count_IMs,Value,commodity,Stat_Redaction
+2012,01-Count of IMs,01-Count of IMs,Number of Industry Members,6498,6498,Wine,FALSE
+2012,1-Production,1-Production,0-Category Total,5464,809175452,Wine,FALSE
+2012,1-Production,1-Production,1-Low Alcohol %,4601,648822674,Wine,FALSE
+2012,1-Production,1-Production,2-Medium and High Alcohol %,2989,129711736,Wine,FALSE
+2012,1-Production,1-Production,4-Artificially Carbonated Wine,48,395002,Wine,FALSE
+2012,1-Production,1-Production,5-Sparkling Wine,150,24619386,Wine,FALSE
+2012,1-Production,1-Production,6-Hard Cider,151,5626654,Wine,FALSE
+2012,2-Withdrawals,2-Taxable Withdrawals,0-Category Total,5182,619667409,Wine,FALSE
+2012,2-Withdrawals,2-Taxable Withdrawals,1-Low Alcohol %,4449,524087881,Wine,FALSE
+2012,2-Withdrawals,2-Taxable Withdrawals,2-Medium and High Alcohol %,3236,53323900,Wine,FALSE
+2012,2-Withdrawals,2-Taxable Withdrawals,4-Artificially Carbonated Wine,157,1419352,Wine,FALSE
+2012,2-Withdrawals,2-Taxable Withdrawals,5-Sparkling Wine,454,21818072,Wine,FALSE
+2012,2-Withdrawals,2-Taxable Withdrawals,6-Hard Cider,171,19018205,Wine,FALSE
+2012,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,0-Category Total,5182,619667409,Wine,FALSE
+2012,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,1-Bottled,5104,597299834,Wine,FALSE
+2012,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,2-Bulk,416,22367575,Wine,FALSE
+2012,2-Withdrawals,3-Tax Free Withdrawals,0-Category Total,3222,118841238,Wine,FALSE
+2012,2-Withdrawals,3-Tax Free Withdrawals,1-Low Alcohol %,2774,105361173,Wine,FALSE
+2012,2-Withdrawals,3-Tax Free Withdrawals,2-Medium and High Alcohol %,1684,11146510,Wine,FALSE
+2012,2-Withdrawals,3-Tax Free Withdrawals,4-Artificially Carbonated/Sparkling Wine,,,Wine,TRUE
+2012,2-Withdrawals,3-Tax Free Withdrawals,6-Hard Cider,,,Wine,TRUE
+2012,2-Withdrawals,3-Tax Free Withdrawals For Export,0-Category Total,375,105268819,Wine,FALSE
+2012,2-Withdrawals,3-Tax Free Withdrawals For Export,1-Bottled Exports,323,57148125,Wine,FALSE
+2012,2-Withdrawals,3-Tax Free Withdrawals For Export,2-Bulk Exports,72,48120694,Wine,FALSE
+2013,01-Count of IMs,01-Count of IMs,Number of Industry Members,6847,6847,Wine,FALSE
+2013,1-Production,1-Production,0-Category Total,5700,882643314,Wine,FALSE
+2013,1-Production,1-Production,1-Low Alcohol %,4735,687748626,Wine,FALSE
+2013,1-Production,1-Production,2-Medium and High Alcohol %,3115,158602495,Wine,FALSE
+2013,1-Production,1-Production,4-Artificially Carbonated Wine,56,245895,Wine,FALSE
+2013,1-Production,1-Production,5-Sparkling Wine,161,27550062,Wine,FALSE
+2013,1-Production,1-Production,6-Hard Cider,199,8496236,Wine,FALSE
+2013,2-Withdrawals,2-Taxable Withdrawals,0-Category Total,5520,649424836,Wine,FALSE
+2013,2-Withdrawals,2-Taxable Withdrawals,1-Low Alcohol %,4758,540446681,Wine,FALSE
+2013,2-Withdrawals,2-Taxable Withdrawals,2-Medium and High Alcohol %,3409,52557749,Wine,FALSE
+2013,2-Withdrawals,2-Taxable Withdrawals,4-Artificially Carbonated Wine,168,1074453,Wine,FALSE
+2013,2-Withdrawals,2-Taxable Withdrawals,5-Sparkling Wine,477,22287294,Wine,FALSE
+2013,2-Withdrawals,2-Taxable Withdrawals,6-Hard Cider,218,33058659,Wine,FALSE
+2013,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,0-Category Total,5520,649424836,Wine,FALSE
+2013,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,1-Bottled,5407,613767367,Wine,FALSE
+2013,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,2-Bulk,499,35657469,Wine,FALSE
+2013,2-Withdrawals,3-Tax Free Withdrawals,0-Category Total,3370,125793641,Wine,FALSE
+2013,2-Withdrawals,3-Tax Free Withdrawals,1-Low Alcohol %,2913,110793520,Wine,FALSE
+2013,2-Withdrawals,3-Tax Free Withdrawals,2-Medium and High Alcohol %,1754,11689501,Wine,FALSE
+2013,2-Withdrawals,3-Tax Free Withdrawals,4-Artificially Carbonated/Sparkling Wine,285,2740668,Wine,FALSE
+2013,2-Withdrawals,3-Tax Free Withdrawals,6-Hard Cider,109,569953,Wine,FALSE
+2013,2-Withdrawals,3-Tax Free Withdrawals For Export,0-Category Total,368,107408948,Wine,FALSE
+2013,2-Withdrawals,3-Tax Free Withdrawals For Export,1-Bottled Exports,328,61643341,Wine,FALSE
+2013,2-Withdrawals,3-Tax Free Withdrawals For Export,2-Bulk Exports,57,45765606,Wine,FALSE
+2014,01-Count of IMs,01-Count of IMs,Number of Industry Members,7270,7270,Wine,FALSE
+2014,1-Production,1-Production,0-Category Total,5966,881962751,Wine,FALSE
+2014,1-Production,1-Production,1-Low Alcohol %,4853,660482171,Wine,FALSE
+2014,1-Production,1-Production,2-Medium and High Alcohol %,3337,172828136,Wine,FALSE
+2014,1-Production,1-Production,4-Artificially Carbonated Wine,73,255099,Wine,FALSE
+2014,1-Production,1-Production,5-Sparkling Wine,176,29760398,Wine,FALSE
+2014,1-Production,1-Production,6-Hard Cider,296,18636947,Wine,FALSE
+2014,2-Withdrawals,2-Taxable Withdrawals,0-Category Total,5774,683744603,Wine,FALSE
+2014,2-Withdrawals,2-Taxable Withdrawals,1-Low Alcohol %,4935,546482951,Wine,FALSE
+2014,2-Withdrawals,2-Taxable Withdrawals,2-Medium and High Alcohol %,3597,57807309,Wine,FALSE
+2014,2-Withdrawals,2-Taxable Withdrawals,4-Artificially Carbonated Wine,199,1015116,Wine,FALSE
+2014,2-Withdrawals,2-Taxable Withdrawals,5-Sparkling Wine,537,24090533,Wine,FALSE
+2014,2-Withdrawals,2-Taxable Withdrawals,6-Hard Cider,298,54348693,Wine,FALSE
+2014,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,0-Category Total,5774,683744603,Wine,FALSE
+2014,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,1-Bottled,5664,645828024,Wine,FALSE
+2014,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,2-Bulk,558,37916579,Wine,FALSE
+2014,2-Withdrawals,3-Tax Free Withdrawals,0-Category Total,3519,126881237,Wine,FALSE
+2014,2-Withdrawals,3-Tax Free Withdrawals,1-Low Alcohol %,3015,110023149,Wine,FALSE
+2014,2-Withdrawals,3-Tax Free Withdrawals,2-Medium and High Alcohol %,1805,13076125,Wine,FALSE
+2014,2-Withdrawals,3-Tax Free Withdrawals,4-Artificially Carbonated/Sparkling Wine,315,2913330,Wine,FALSE
+2014,2-Withdrawals,3-Tax Free Withdrawals,6-Hard Cider,149,868632,Wine,FALSE
+2014,2-Withdrawals,3-Tax Free Withdrawals For Export,0-Category Total,387,108655673,Wine,FALSE
+2014,2-Withdrawals,3-Tax Free Withdrawals For Export,1-Bottled Exports,338,63299084,Wine,FALSE
+2014,2-Withdrawals,3-Tax Free Withdrawals For Export,2-Bulk Exports,74,45356589,Wine,FALSE
+2015,01-Count of IMs,01-Count of IMs,Number of Industry Members,7580,7580,Wine,FALSE
+2015,1-Production,1-Production,0-Category Total,6189,814983602,Wine,FALSE
+2015,1-Production,1-Production,1-Low Alcohol %,4997,637998242,Wine,FALSE
+2015,1-Production,1-Production,2-Medium and High Alcohol %,3403,127827800,Wine,FALSE
+2015,1-Production,1-Production,4-Artificially Carbonated Wine,,,Wine,TRUE
+2015,1-Production,1-Production,5-Sparkling Wine,225,30311661,Wine,FALSE
+2015,1-Production,1-Production,6-Hard Cider,,,Wine,TRUE
+2015,2-Withdrawals,2-Taxable Withdrawals,0-Category Total,6053,701484678,Wine,FALSE
+2015,2-Withdrawals,2-Taxable Withdrawals,1-Low Alcohol %,5077,548366338,Wine,FALSE
+2015,2-Withdrawals,2-Taxable Withdrawals,2-Medium and High Alcohol %,3725,70196263,Wine,FALSE
+2015,2-Withdrawals,2-Taxable Withdrawals,4-Artificially Carbonated Wine,220,1106148,Wine,FALSE
+2015,2-Withdrawals,2-Taxable Withdrawals,5-Sparkling Wine,594,25436078,Wine,FALSE
+2015,2-Withdrawals,2-Taxable Withdrawals,6-Hard Cider,430,56379850,Wine,FALSE
+2015,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,0-Category Total,6053,701484678,Wine,FALSE
+2015,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,1-Bottled,5918,671002881,Wine,FALSE
+2015,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,2-Bulk,601,30481797,Wine,FALSE
+2015,2-Withdrawals,3-Tax Free Withdrawals,0-Category Total,3608,127490915,Wine,FALSE
+2015,2-Withdrawals,3-Tax Free Withdrawals,1-Low Alcohol %,3056,110595455,Wine,FALSE
+2015,2-Withdrawals,3-Tax Free Withdrawals,2-Medium and High Alcohol %,1866,13466478,Wine,FALSE
+2015,2-Withdrawals,3-Tax Free Withdrawals,4-Artificially Carbonated/Sparkling Wine,336,2580032,Wine,FALSE
+2015,2-Withdrawals,3-Tax Free Withdrawals,6-Hard Cider,195,848950,Wine,FALSE
+2015,2-Withdrawals,3-Tax Free Withdrawals For Export,0-Category Total,378,108856164,Wine,FALSE
+2015,2-Withdrawals,3-Tax Free Withdrawals For Export,1-Bottled Exports,333,63849237,Wine,FALSE
+2015,2-Withdrawals,3-Tax Free Withdrawals For Export,2-Bulk Exports,72,45006927,Wine,FALSE
+2016,01-Count of IMs,01-Count of IMs,Number of Industry Members,7919,7919,Wine,FALSE
+2016,1-Production,1-Production,0-Category Total,6326,857121849,Wine,FALSE
+2016,1-Production,1-Production,1-Low Alcohol %,5098,655225780,Wine,FALSE
+2016,1-Production,1-Production,2-Medium and High Alcohol %,3422,151305807,Wine,FALSE
+2016,1-Production,1-Production,4-Artificially Carbonated Wine,,,Wine,TRUE
+2016,1-Production,1-Production,5-Sparkling Wine,251,30894633,Wine,FALSE
+2016,1-Production,1-Production,6-Hard Cider,,,Wine,TRUE
+2016,2-Withdrawals,2-Taxable Withdrawals,0-Category Total,6288,711336462,Wine,FALSE
+2016,2-Withdrawals,2-Taxable Withdrawals,1-Low Alcohol %,5210,561026435,Wine,FALSE
+2016,2-Withdrawals,2-Taxable Withdrawals,2-Medium and High Alcohol %,3808,73065186,Wine,FALSE
+2016,2-Withdrawals,2-Taxable Withdrawals,4-Artificially Carbonated Wine,265,1189790,Wine,FALSE
+2016,2-Withdrawals,2-Taxable Withdrawals,5-Sparkling Wine,646,27539328,Wine,FALSE
+2016,2-Withdrawals,2-Taxable Withdrawals,6-Hard Cider,552,48515723,Wine,FALSE
+2016,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,0-Category Total,6288,711336462,Wine,FALSE
+2016,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,1-Bottled,6140,684075655,Wine,FALSE
+2016,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,2-Bulk,637,27260807,Wine,FALSE
+2016,2-Withdrawals,3-Tax Free Withdrawals,0-Category Total,3621,121517230,Wine,FALSE
+2016,2-Withdrawals,3-Tax Free Withdrawals,1-Low Alcohol %,3054,103246322,Wine,FALSE
+2016,2-Withdrawals,3-Tax Free Withdrawals,2-Medium and High Alcohol %,1842,15429085,Wine,FALSE
+2016,2-Withdrawals,3-Tax Free Withdrawals,4-Artificially Carbonated/Sparkling Wine,346,1402127,Wine,FALSE
+2016,2-Withdrawals,3-Tax Free Withdrawals,6-Hard Cider,245,1439696,Wine,FALSE
+2016,2-Withdrawals,3-Tax Free Withdrawals For Export,0-Category Total,358,101253719,Wine,FALSE
+2016,2-Withdrawals,3-Tax Free Withdrawals For Export,1-Bottled Exports,303,56383765,Wine,FALSE
+2016,2-Withdrawals,3-Tax Free Withdrawals For Export,2-Bulk Exports,83,44869954,Wine,FALSE
+2017,01-Count of IMs,01-Count of IMs,Number of Industry Members,8293,8293,Wine,FALSE
+2017,1-Production,1-Production,0-Category Total,6627,889954542,Wine,FALSE
+2017,1-Production,1-Production,1-Low Alcohol %,5347,665306188,Wine,FALSE
+2017,1-Production,1-Production,2-Medium and High Alcohol %,3494,169665738,Wine,FALSE
+2017,1-Production,1-Production,4-Artificially Carbonated Wine,126,843233,Wine,FALSE
+2017,1-Production,1-Production,5-Sparkling Wine,272,34556917,Wine,FALSE
+2017,1-Production,1-Production,6-Hard Cider,614,19582467,Wine,FALSE
+2017,2-Withdrawals,2-Taxable Withdrawals,0-Category Total,6537,708878041,Wine,FALSE
+2017,2-Withdrawals,2-Taxable Withdrawals,1-Low Alcohol %,5441,558855783,Wine,FALSE
+2017,2-Withdrawals,2-Taxable Withdrawals,2-Medium and High Alcohol %,3886,72821289,Wine,FALSE
+2017,2-Withdrawals,2-Taxable Withdrawals,4-Artificially Carbonated Wine,310,981531,Wine,FALSE
+2017,2-Withdrawals,2-Taxable Withdrawals,5-Sparkling Wine,682,28797721,Wine,FALSE
+2017,2-Withdrawals,2-Taxable Withdrawals,6-Hard Cider,696,47421717,Wine,FALSE
+2017,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,0-Category Total,6537,708878041,Wine,FALSE
+2017,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,1-Bottled,6358,695021008,Wine,FALSE
+2017,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,2-Bulk,699,13857033,Wine,FALSE
+2017,2-Withdrawals,3-Tax Free Withdrawals,0-Category Total,3655,119309677,Wine,FALSE
+2017,2-Withdrawals,3-Tax Free Withdrawals,1-Low Alcohol %,3086,100070991,Wine,FALSE
+2017,2-Withdrawals,3-Tax Free Withdrawals,2-Medium and High Alcohol %,1835,15937789,Wine,FALSE
+2017,2-Withdrawals,3-Tax Free Withdrawals,4-Artificially Carbonated/Sparkling Wine,380,1226419,Wine,FALSE
+2017,2-Withdrawals,3-Tax Free Withdrawals,6-Hard Cider,281,2074478,Wine,FALSE
+2017,2-Withdrawals,3-Tax Free Withdrawals For Export,0-Category Total,380,94088993,Wine,FALSE
+2017,2-Withdrawals,3-Tax Free Withdrawals For Export,1-Bottled Exports,308,47630894,Wine,FALSE
+2017,2-Withdrawals,3-Tax Free Withdrawals For Export,2-Bulk Exports,95,46458098,Wine,FALSE
+2018,01-Count of IMs,01-Count of IMs,Number of Industry Members,8361,8361,Wine,FALSE
+2018,1-Production,1-Production,0-Category Total,6570,871992783,Wine,FALSE
+2018,1-Production,1-Production,1-Low Alcohol %,6185,761913155,Wine,FALSE
+2018,1-Production,1-Production,2-Medium and High Alcohol %,1266,54336293,Wine,FALSE
+2018,1-Production,1-Production,4-Artificially Carbonated Wine,168,1275330,Wine,FALSE
+2018,1-Production,1-Production,5-Sparkling Wine,303,32394679,Wine,FALSE
+2018,1-Production,1-Production,6-Hard Cider,707,22073327,Wine,FALSE
+2018,2-Withdrawals,2-Taxable Withdrawals,0-Category Total,6733,738167365,Wine,FALSE
+2018,2-Withdrawals,2-Taxable Withdrawals,1-Low Alcohol %,6349,646676000,Wine,FALSE
+2018,2-Withdrawals,2-Taxable Withdrawals,2-Medium and High Alcohol %,1703,10435390,Wine,FALSE
+2018,2-Withdrawals,2-Taxable Withdrawals,4-Artificially Carbonated Wine,369,1358944,Wine,FALSE
+2018,2-Withdrawals,2-Taxable Withdrawals,5-Sparkling Wine,754,28935116,Wine,FALSE
+2018,2-Withdrawals,2-Taxable Withdrawals,6-Hard Cider,808,50761914,Wine,FALSE
+2018,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,0-Category Total,6733,738167365,Wine,FALSE
+2018,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,1-Bottled,6510,724991808,Wine,FALSE
+2018,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,2-Bulk,811,13175556,Wine,FALSE
+2018,2-Withdrawals,3-Tax Free Withdrawals,0-Category Total,3592,115419307,Wine,FALSE
+2018,2-Withdrawals,3-Tax Free Withdrawals,1-Low Alcohol %,3378,103075418,Wine,FALSE
+2018,2-Withdrawals,3-Tax Free Withdrawals,2-Medium and High Alcohol %,785,9300278,Wine,FALSE
+2018,2-Withdrawals,3-Tax Free Withdrawals,4-Artificially Carbonated/Sparkling Wine,411,1577270,Wine,FALSE
+2018,2-Withdrawals,3-Tax Free Withdrawals,6-Hard Cider,314,1466340,Wine,FALSE
+2018,2-Withdrawals,3-Tax Free Withdrawals For Export,0-Category Total,381,91422105,Wine,FALSE
+2018,2-Withdrawals,3-Tax Free Withdrawals For Export,1-Bottled Exports,323,41537342,Wine,FALSE
+2018,2-Withdrawals,3-Tax Free Withdrawals For Export,2-Bulk Exports,84,49884763,Wine,FALSE
+2019,01-Count of IMs,01-Count of IMs,Number of Industry Members,8763,8763,Wine,FALSE
+2019,1-Production,1-Production,0-Category Total,6848,854053477,Wine,FALSE
+2019,1-Production,1-Production,1-Low Alcohol %,6436,744091515,Wine,FALSE
+2019,1-Production,1-Production,2-Medium and High Alcohol %,1185,54077770,Wine,FALSE
+2019,1-Production,1-Production,4-Artificially Carbonated Wine,184,2438230,Wine,FALSE
+2019,1-Production,1-Production,5-Sparkling Wine,356,31371508,Wine,FALSE
+2019,1-Production,1-Production,6-Hard Cider,809,22074455,Wine,FALSE
+2019,2-Withdrawals,2-Taxable Withdrawals,0-Category Total,6923,725239490,Wine,FALSE
+2019,2-Withdrawals,2-Taxable Withdrawals,1-Low Alcohol %,6519,635538073,Wine,FALSE
+2019,2-Withdrawals,2-Taxable Withdrawals,2-Medium and High Alcohol %,1553,10156562,Wine,FALSE
+2019,2-Withdrawals,2-Taxable Withdrawals,4-Artificially Carbonated Wine,429,2090334,Wine,FALSE
+2019,2-Withdrawals,2-Taxable Withdrawals,5-Sparkling Wine,801,28248795,Wine,FALSE
+2019,2-Withdrawals,2-Taxable Withdrawals,6-Hard Cider,903,49205726,Wine,FALSE
+2019,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,0-Category Total,6923,725239490,Wine,FALSE
+2019,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,1-Bottled,6676,710440619,Wine,FALSE
+2019,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,2-Bulk,879,14798872,Wine,FALSE
+2019,2-Withdrawals,3-Tax Free Withdrawals,0-Category Total,3612,117234156,Wine,FALSE
+2019,2-Withdrawals,3-Tax Free Withdrawals,1-Low Alcohol %,3397,103829086,Wine,FALSE
+2019,2-Withdrawals,3-Tax Free Withdrawals,2-Medium and High Alcohol %,700,10266912,Wine,FALSE
+2019,2-Withdrawals,3-Tax Free Withdrawals,4-Artificially Carbonated/Sparkling Wine,465,1360583,Wine,FALSE
+2019,2-Withdrawals,3-Tax Free Withdrawals,6-Hard Cider,325,1777575,Wine,FALSE
+2019,2-Withdrawals,3-Tax Free Withdrawals For Export,0-Category Total,369,88156170,Wine,FALSE
+2019,2-Withdrawals,3-Tax Free Withdrawals For Export,1-Bottled Exports,300,36799733,Wine,FALSE
+2019,2-Withdrawals,3-Tax Free Withdrawals For Export,2-Bulk Exports,100,51356437,Wine,FALSE
+2020,01-Count of IMs,01-Count of IMs,Number of Industry Members,9005,9005,Wine,FALSE
+2020,1-Production,1-Production,0-Category Total,6745,769417598,Wine,FALSE
+2020,1-Production,1-Production,1-Low Alcohol %,6314,673097800,Wine,FALSE
+2020,1-Production,1-Production,2-Medium and High Alcohol %,1115,43011534,Wine,FALSE
+2020,1-Production,1-Production,4-Artificially Carbonated Wine,203,2114542,Wine,FALSE
+2020,1-Production,1-Production,5-Sparkling Wine,395,29898772,Wine,FALSE
+2020,1-Production,1-Production,6-Hard Cider,843,21294949,Wine,FALSE
+2020,2-Withdrawals,2-Taxable Withdrawals,0-Category Total,6989,742913547,Wine,FALSE
+2020,2-Withdrawals,2-Taxable Withdrawals,1-Low Alcohol %,6582,660761754,Wine,FALSE
+2020,2-Withdrawals,2-Taxable Withdrawals,2-Medium and High Alcohol %,1518,10077086,Wine,FALSE
+2020,2-Withdrawals,2-Taxable Withdrawals,4-Artificially Carbonated Wine,460,2854078,Wine,FALSE
+2020,2-Withdrawals,2-Taxable Withdrawals,5-Sparkling Wine,831,27449280,Wine,FALSE
+2020,2-Withdrawals,2-Taxable Withdrawals,6-Hard Cider,978,41771348,Wine,FALSE
+2020,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,0-Category Total,6989,742913547,Wine,FALSE
+2020,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,1-Bottled,6719,724940888,Wine,FALSE
+2020,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,2-Bulk,849,17972659,Wine,FALSE
+2020,2-Withdrawals,3-Tax Free Withdrawals,0-Category Total,3557,137954587,Wine,FALSE
+2020,2-Withdrawals,3-Tax Free Withdrawals,1-Low Alcohol %,3335,114793729,Wine,FALSE
+2020,2-Withdrawals,3-Tax Free Withdrawals,2-Medium and High Alcohol %,684,18426685,Wine,FALSE
+2020,2-Withdrawals,3-Tax Free Withdrawals,4-Artificially Carbonated/Sparkling Wine,472,982381,Wine,FALSE
+2020,2-Withdrawals,3-Tax Free Withdrawals,6-Hard Cider,340,3751792,Wine,FALSE
+2020,2-Withdrawals,3-Tax Free Withdrawals For Export,0-Category Total,372,96501860,Wine,FALSE
+2020,2-Withdrawals,3-Tax Free Withdrawals For Export,1-Bottled Exports,260,34427990,Wine,FALSE
+2020,2-Withdrawals,3-Tax Free Withdrawals For Export,2-Bulk Exports,144,62073870,Wine,FALSE
+2021,01-Count of IMs,01-Count of IMs,Number of Industry Members,9386,9386,Wine,FALSE
+2021,1-Production,1-Production,0-Category Total,6984,773783623,Wine,FALSE
+2021,1-Production,1-Production,1-Low Alcohol %,6530,665817908,Wine,FALSE
+2021,1-Production,1-Production,2-Medium and High Alcohol %,1090,42995328,Wine,FALSE
+2021,1-Production,1-Production,4-Artificially Carbonated Wine,247,3275952,Wine,FALSE
+2021,1-Production,1-Production,5-Sparkling Wine,454,33998382,Wine,FALSE
+2021,1-Production,1-Production,6-Hard Cider,928,27696051,Wine,FALSE
+2021,2-Withdrawals,2-Taxable Withdrawals,0-Category Total,7183,714359421,Wine,FALSE
+2021,2-Withdrawals,2-Taxable Withdrawals,1-Low Alcohol %,6730,628929168,Wine,FALSE
+2021,2-Withdrawals,2-Taxable Withdrawals,2-Medium and High Alcohol %,1515,9768226,Wine,FALSE
+2021,2-Withdrawals,2-Taxable Withdrawals,4-Artificially Carbonated Wine,526,3243524,Wine,FALSE
+2021,2-Withdrawals,2-Taxable Withdrawals,5-Sparkling Wine,982,30520294,Wine,FALSE
+2021,2-Withdrawals,2-Taxable Withdrawals,6-Hard Cider,1050,41898210,Wine,FALSE
+2021,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,0-Category Total,7183,714359421,Wine,FALSE
+2021,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,1-Bottled,6888,708765771,Wine,FALSE
+2021,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,2-Bulk,880,5593650,Wine,FALSE
+2021,2-Withdrawals,3-Tax Free Withdrawals,0-Category Total,3587,140764319,Wine,FALSE
+2021,2-Withdrawals,3-Tax Free Withdrawals,1-Low Alcohol %,3351,106406506,Wine,FALSE
+2021,2-Withdrawals,3-Tax Free Withdrawals,2-Medium and High Alcohol %,660,26391219,Wine,FALSE
+2021,2-Withdrawals,3-Tax Free Withdrawals,4-Artificially Carbonated/Sparkling Wine,508,1319371,Wine,FALSE
+2021,2-Withdrawals,3-Tax Free Withdrawals,6-Hard Cider,369,6647224,Wine,FALSE
+2021,2-Withdrawals,3-Tax Free Withdrawals For Export,0-Category Total,327,88037496,Wine,FALSE
+2021,2-Withdrawals,3-Tax Free Withdrawals For Export,1-Bottled Exports,263,35260755,Wine,FALSE
+2021,2-Withdrawals,3-Tax Free Withdrawals For Export,2-Bulk Exports,95,52776741,Wine,FALSE
+2022,01-Count of IMs,01-Count of IMs,Number of Industry Members,9610,9610,Wine,FALSE
+2022,1-Production,1-Production,0-Category Total,7111,774888614,Wine,FALSE
+2022,1-Production,1-Production,1-Low Alcohol %,6648,660783674,Wine,FALSE
+2022,1-Production,1-Production,2-Medium and High Alcohol %,1140,51203524,Wine,FALSE
+2022,1-Production,1-Production,4-Artificially Carbonated Wine,258,2216448,Wine,FALSE
+2022,1-Production,1-Production,5-Sparkling Wine,486,31559554,Wine,FALSE
+2022,1-Production,1-Production,6-Hard Cider,971,29125414,Wine,FALSE
+2022,2-Withdrawals,2-Taxable Withdrawals,0-Category Total,7198,669551862,Wine,FALSE
+2022,2-Withdrawals,2-Taxable Withdrawals,1-Low Alcohol %,6709,587221640,Wine,FALSE
+2022,2-Withdrawals,2-Taxable Withdrawals,2-Medium and High Alcohol %,1498,10182476,Wine,FALSE
+2022,2-Withdrawals,2-Taxable Withdrawals,4-Artificially Carbonated Wine,529,2920212,Wine,FALSE
+2022,2-Withdrawals,2-Taxable Withdrawals,5-Sparkling Wine,1057,28072816,Wine,FALSE
+2022,2-Withdrawals,2-Taxable Withdrawals,6-Hard Cider,1114,41154719,Wine,FALSE
+2022,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,0-Category Total,7198,669551862,Wine,FALSE
+2022,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,1-Bottled,6852,656954979,Wine,FALSE
+2022,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,2-Bulk,940,12596882,Wine,FALSE
+2022,2-Withdrawals,3-Tax Free Withdrawals,0-Category Total,3544,150403475,Wine,FALSE
+2022,2-Withdrawals,3-Tax Free Withdrawals,1-Low Alcohol %,3300,96244089,Wine,FALSE
+2022,2-Withdrawals,3-Tax Free Withdrawals,2-Medium and High Alcohol %,631,47502182,Wine,FALSE
+2022,2-Withdrawals,3-Tax Free Withdrawals,4-Artificially Carbonated/Sparkling Wine,539,1095312,Wine,FALSE
+2022,2-Withdrawals,3-Tax Free Withdrawals,6-Hard Cider,379,5561892,Wine,FALSE
+2022,2-Withdrawals,3-Tax Free Withdrawals For Export,0-Category Total,353,76736754,Wine,FALSE
+2022,2-Withdrawals,3-Tax Free Withdrawals For Export,1-Bottled Exports,257,36033820,Wine,FALSE
+2022,2-Withdrawals,3-Tax Free Withdrawals For Export,2-Bulk Exports,126,40702933,Wine,FALSE
+2023,01-Count of IMs,01-Count of IMs,Number of Industry Members,9584,9584,Wine,FALSE
+2023,1-Production,1-Production,0-Category Total,7016,770446047,Wine,FALSE
+2023,1-Production,1-Production,1-Low Alcohol %,6569,668593565,Wine,FALSE
+2023,1-Production,1-Production,2-Medium and High Alcohol %,1057,42361858,Wine,FALSE
+2023,1-Production,1-Production,4-Artificially Carbonated Wine,249,1694963,Wine,FALSE
+2023,1-Production,1-Production,5-Sparkling Wine,482,28497980,Wine,FALSE
+2023,1-Production,1-Production,6-Hard Cider,984,29297680,Wine,FALSE
+2023,2-Withdrawals,2-Taxable Withdrawals,0-Category Total,7204,630070737,Wine,FALSE
+2023,2-Withdrawals,2-Taxable Withdrawals,1-Low Alcohol %,6751,550509353,Wine,FALSE
+2023,2-Withdrawals,2-Taxable Withdrawals,2-Medium and High Alcohol %,1453,9852541,Wine,FALSE
+2023,2-Withdrawals,2-Taxable Withdrawals,4-Artificially Carbonated Wine,564,3017908,Wine,FALSE
+2023,2-Withdrawals,2-Taxable Withdrawals,5-Sparkling Wine,1069,26691480,Wine,FALSE
+2023,2-Withdrawals,2-Taxable Withdrawals,6-Hard Cider,1091,39999456,Wine,FALSE
+2023,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,0-Category Total,7204,630070737,Wine,FALSE
+2023,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,1-Bottled,6855,614029605,Wine,FALSE
+2023,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,2-Bulk,924,16041131,Wine,FALSE
+2023,2-Withdrawals,3-Tax Free Withdrawals,0-Category Total,3408,143380705,Wine,FALSE
+2023,2-Withdrawals,3-Tax Free Withdrawals,1-Low Alcohol %,3175,85162425,Wine,FALSE
+2023,2-Withdrawals,3-Tax Free Withdrawals,2-Medium and High Alcohol %,584,51419850,Wine,FALSE
+2023,2-Withdrawals,3-Tax Free Withdrawals,4-Artificially Carbonated/Sparkling Wine,526,758918,Wine,FALSE
+2023,2-Withdrawals,3-Tax Free Withdrawals,6-Hard Cider,369,6039512,Wine,FALSE
+2023,2-Withdrawals,3-Tax Free Withdrawals For Export,0-Category Total,305,60977099,Wine,FALSE
+2023,2-Withdrawals,3-Tax Free Withdrawals For Export,1-Bottled Exports,254,29309839,Wine,FALSE
+2023,2-Withdrawals,3-Tax Free Withdrawals For Export,2-Bulk Exports,74,31667260,Wine,FALSE
+2024,01-Count of IMs,01-Count of IMs,Number of Industry Members,9225,9225,Wine,FALSE
+2024,1-Production,1-Production,0-Category Total,6688,653523677,Wine,FALSE
+2024,1-Production,1-Production,1-Low Alcohol %,6276,558115251,Wine,FALSE
+2024,1-Production,1-Production,2-Medium and High Alcohol %,1033,42410508,Wine,FALSE
+2024,1-Production,1-Production,4-Artificially Carbonated Wine,235,1744624,Wine,FALSE
+2024,1-Production,1-Production,5-Sparkling Wine,480,26750727,Wine,FALSE
+2024,1-Production,1-Production,6-Hard Cider,901,24502568,Wine,FALSE
+2024,2-Withdrawals,2-Taxable Withdrawals,0-Category Total,6980,593931777,Wine,FALSE
+2024,2-Withdrawals,2-Taxable Withdrawals,1-Low Alcohol %,6559,520832273,Wine,FALSE
+2024,2-Withdrawals,2-Taxable Withdrawals,2-Medium and High Alcohol %,1355,9570463,Wine,FALSE
+2024,2-Withdrawals,2-Taxable Withdrawals,4-Artificially Carbonated Wine,563,3262638,Wine,FALSE
+2024,2-Withdrawals,2-Taxable Withdrawals,5-Sparkling Wine,1097,23556070,Wine,FALSE
+2024,2-Withdrawals,2-Taxable Withdrawals,6-Hard Cider,1061,36710333,Wine,FALSE
+2024,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,0-Category Total,6980,593931777,Wine,FALSE
+2024,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,1-Bottled,6649,569617697,Wine,FALSE
+2024,2-Withdrawals,2-Taxable Withdrawals by Bulk vs Bottled,2-Bulk,910,24314079,Wine,FALSE
+2024,2-Withdrawals,3-Tax Free Withdrawals,0-Category Total,3242,156125290,Wine,FALSE
+2024,2-Withdrawals,3-Tax Free Withdrawals,1-Low Alcohol %,3012,94326236,Wine,FALSE
+2024,2-Withdrawals,3-Tax Free Withdrawals,2-Medium and High Alcohol %,546,55485273,Wine,FALSE
+2024,2-Withdrawals,3-Tax Free Withdrawals,4-Artificially Carbonated/Sparkling Wine,530,998052,Wine,FALSE
+2024,2-Withdrawals,3-Tax Free Withdrawals,6-Hard Cider,343,5315729,Wine,FALSE
+2024,2-Withdrawals,3-Tax Free Withdrawals For Export,0-Category Total,289,68613046,Wine,FALSE
+2024,2-Withdrawals,3-Tax Free Withdrawals For Export,1-Bottled Exports,252,27723192,Wine,FALSE
+2024,2-Withdrawals,3-Tax Free Withdrawals For Export,2-Bulk Exports,63,40889855,Wine,FALSE
