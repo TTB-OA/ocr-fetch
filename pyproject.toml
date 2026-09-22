@@ -1,6 +1,6 @@
 [project]
 name = "ocr-fetch"
-version = "0.1.0"
+version = "0.1.1"
 description = "Download files from URLs and convert documents (PDF, Office, HTML, images, spreadsheets) to Markdown/text"
 readme = "README.md"
 requires-python = ">=3.12"
@@ -15,7 +15,8 @@ dependencies = [
     "pdf2image>=1.17.0",
     "pillow>=11.0.0",
     "pypandoc>=1.16.2",
-    "pypdf>=6.7.1",
+    # crypto: AES-encrypted PDFs (e.g. fillable forms); fonts: CFF Type1 encodings.
+    "pypdf[crypto,fonts]>=6.7.1",
     "pytesseract>=0.3.13",
     "requests>=2.32.5",
     "tabulate>=0.10.0",
