@@ -15,6 +15,8 @@ MIME_TO_EXTENSION: dict[str, str] = {
     'image/jpeg': '.jpg',
     'image/png': '.png',
     'image/bmp': '.bmp',
+    'application/zip': '.zip',
+    'application/x-zip-compressed': '.zip',
 }
 
 

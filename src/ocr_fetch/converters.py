@@ -130,6 +130,26 @@ def _read_text_with_fallback_encodings(file_path: str, encodings: list[str]) -> 
         return f.read()
 
 
+# Control bytes that legitimately appear in text (tab, LF, VT, FF, CR, BS, ESC).
+_TEXT_CONTROL_BYTES = frozenset(b'\t\n\x0b\x0c\r\x08\x1b')
+
+
+def looks_like_text(file_path: str, sample_size: int = 8192) -> bool:
+    """Sniff the head of a file for binary content (NUL bytes / control-byte density).
+
+    Mirrors git's heuristic: any NUL in the sample means binary. Raises OSError if
+    the file cannot be read.
+    """
+    with open(file_path, 'rb') as f:
+        sample = f.read(sample_size)
+    if not sample:
+        return True
+    if b'\x00' in sample:
+        return False
+    control = sum(1 for b in sample if b < 0x20 and b not in _TEXT_CONTROL_BYTES)
+    return control / len(sample) < 0.05
+
+
 # ---------------------------------------------------------------------------
 # Converter wrapper – eliminates boilerplate in simple converters
 # ---------------------------------------------------------------------------

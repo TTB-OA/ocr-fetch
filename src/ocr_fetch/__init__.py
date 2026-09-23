@@ -1,7 +1,7 @@
 """ocr-fetch: download files from URLs and convert documents to Markdown/text.
 
 Handles PDF (text-based and scanned/OCR), DOC/DOCX, PPTX, HTML, XML, images,
-spreadsheets (CSV/XLS/XLSX), and plain text.
+spreadsheets (CSV/XLS/XLSX), plain text, and ZIP archives of the above.
 
 System dependencies (install separately, and ensure they are on PATH):
 - Tesseract-OCR: https://github.com/tesseract-ocr/tesseract (required by pytesseract)
@@ -9,6 +9,7 @@ System dependencies (install separately, and ensure they are on PATH):
 - Pandoc: https://pandoc.org/ (required by pypandoc)
 """
 
+from .archives import convert_zip_to_markdown
 from .converters import (
     convert_doc_to_markdown,
     convert_docx_to_markdown,
@@ -19,6 +20,7 @@ from .converters import (
     convert_spreadsheet_to_markdown,
     convert_txt_to_markdown,
     convert_xml_to_markdown,
+    looks_like_text,
 )
 from .downloader import build_download_session, download_and_convert_file
 from .errors import CONVERSION_ERROR_PREFIX, DEPENDENCY_ERROR_PREFIX, is_conversion_error
@@ -27,9 +29,11 @@ from .mime import MIME_TO_EXTENSION
 from .registry import (
     EXTENSION_TO_METHOD,
     MIME_TO_METHOD,
+    can_convert,
     convert_file_to_markdown,
     get_parse_method_name,
     register_converter,
+    supported_extensions,
 )
 
 __all__ = [
@@ -39,6 +43,7 @@ __all__ = [
     "MIME_TO_EXTENSION",
     "MIME_TO_METHOD",
     "build_download_session",
+    "can_convert",
     "convert_doc_to_markdown",
     "convert_docx_to_markdown",
     "convert_file_to_markdown",
@@ -49,9 +54,12 @@ __all__ = [
     "convert_spreadsheet_to_markdown",
     "convert_txt_to_markdown",
     "convert_xml_to_markdown",
+    "convert_zip_to_markdown",
     "download_and_convert_file",
     "get_parse_method_name",
     "is_conversion_error",
+    "looks_like_text",
     "register_converter",
     "sanitize_filename",
+    "supported_extensions",
 ]

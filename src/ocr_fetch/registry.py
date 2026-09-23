@@ -5,6 +5,7 @@ import os
 import time
 from collections.abc import Callable
 
+from .archives import convert_zip_to_markdown
 from .converters import (
     convert_doc_to_markdown,
     convert_docx_to_markdown,
@@ -15,6 +16,7 @@ from .converters import (
     convert_spreadsheet_to_markdown,
     convert_txt_to_markdown,
     convert_xml_to_markdown,
+    looks_like_text,
 )
 from .dependencies import collect_system_dependency_status, missing_dependencies_for_extension
 from .errors import DEPENDENCY_ERROR_PREFIX, conversion_error, is_conversion_error
@@ -33,7 +35,9 @@ CONVERTER_REGISTRY: dict[str, tuple[str, ConverterFunc]] = {
     '.doc':  ('markitdown_doc',   convert_doc_to_markdown),
     '.pptx': ('markitdown_pptx',  convert_pptx_to_markdown),
     '.txt':  ('plaintext',        convert_txt_to_markdown),
+    '.md':   ('plaintext',        convert_txt_to_markdown),
     '.xml':  ('xml_formatted',    convert_xml_to_markdown),
+    '.xsd':  ('xml_formatted',    convert_xml_to_markdown),
     '.csv':  ('pandas_markdown',  convert_spreadsheet_to_markdown),
     '.xls':  ('pandas_markdown',  convert_spreadsheet_to_markdown),
     '.xlsx': ('pandas_markdown',  convert_spreadsheet_to_markdown),
@@ -41,6 +45,7 @@ CONVERTER_REGISTRY: dict[str, tuple[str, ConverterFunc]] = {
     '.jpeg': ('pytesseract_ocr',  convert_image_to_markdown),
     '.png':  ('pytesseract_ocr',  convert_image_to_markdown),
     '.bmp':  ('pytesseract_ocr',  convert_image_to_markdown),
+    '.zip':  ('zip_archive',      convert_zip_to_markdown),
 }
 
 
@@ -87,6 +92,23 @@ def get_conversion_function(
         if ext and ext in CONVERTER_REGISTRY:
             return CONVERTER_REGISTRY[ext][1]
     return None
+
+
+def supported_extensions() -> tuple[str, ...]:
+    """Sorted lowercase extensions (with leading dot) that have a registered converter."""
+    return tuple(sorted(CONVERTER_REGISTRY))
+
+
+def can_convert(file_ext: str | None = None, content_type: str | None = None) -> bool:
+    """True when a registered converter exists for the extension or (normalized) content type.
+
+    Text-ish files with unknown extensions may still convert via the plain-text
+    fallback; this predicate only reports explicit registry support.
+    """
+    ext = (file_ext or '').lower()
+    if ext and not ext.startswith('.'):
+        ext = '.' + ext
+    return get_conversion_function(ext, content_type=normalize_content_type(content_type)) is not None
 
 
 def get_parse_method_name(file_ext: str, content_type: str | None = None) -> str:
@@ -159,8 +181,18 @@ def convert_file_to_markdown(
             return conversion_error("Converter returned empty content", file_path=file_path, method=parse_method), parse_method
         return markdown_content, parse_method
 
+    try:
+        is_text = looks_like_text(file_path)
+    except OSError as e:
+        return conversion_error(f"Could not read file: {e}", file_path=file_path, method='unknown'), 'unknown'
+    if not is_text:
+        return conversion_error(
+            f"Unsupported binary file type (extension '{file_ext}', content type '{normalized_content_type}')",
+            file_path=file_path, method='unknown',
+        ), 'unknown'
+
     logger.warning(
-        "Unsupported file type ('%s') or content type ('%s') for %s. Attempting to read as text.",
+        "Unsupported file type ('%s') or content type ('%s') for %s. Content looks like text; reading as plain text.",
         file_ext, normalized_content_type, file_path,
     )
     return convert_txt_to_markdown(file_path)
