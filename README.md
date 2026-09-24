@@ -22,7 +22,7 @@ Or pin to a tag:
 dependencies = ["ocr-fetch"]
 
 [tool.uv.sources]
-ocr-fetch = { git = "https://github.com/TTB-OA/ocr-fetch.git", tag = "v0.1.0" }
+ocr-fetch = { git = "https://github.com/TTB-OA/ocr-fetch.git", tag = "v0.3.0" }
 ```
 
 ### System dependencies
@@ -67,7 +67,7 @@ Files with no registered converter are sniffed: text-like content is read as pla
 
 | Name | Purpose |
 | --- | --- |
-| `download_and_convert_file(url, raw_download_dir, file_name_override)` | Download, save, and convert. Returns `(markdown, raw_path, method)`. |
+| `download_and_convert_file(url, raw_download_dir, file_name_override, max_bytes=MAX_DOWNLOAD_BYTES)` | Download, save, and convert. Returns `(markdown, raw_path, method)`. |
 | `convert_file_to_markdown(file_path, content_type=None)` | Convert a local file. Returns `(markdown, method)`. |
 | `is_conversion_error(content)` | True when content is a conversion/dependency error marker. |
 | `can_convert(file_ext=None, content_type=None)` | True when a converter is registered for the extension or MIME type. |
@@ -76,7 +76,27 @@ Files with no registered converter are sniffed: text-like content is read as pla
 | `get_parse_method_name(file_ext, content_type=None)` | Expected method name for an extension/MIME type. |
 | `sanitize_filename(name, ext_hint=None)` | Windows-safe filename. |
 | `register_converter(extension, method_name, converter, mime_types=None)` | Add or override a format. |
-| `build_download_session()` | The retrying `requests.Session` used for downloads. |
+| `build_download_session()` | The retrying `requests.Session` used for downloads (sends `DOWNLOAD_HEADERS`). |
+
+### Downloads
+
+Requests send browser-style `DOWNLOAD_HEADERS`, since some CDNs (e.g. downloads.regulations.gov)
+return 403 for the default `python-requests` user agent. Downloads larger than `max_bytes`
+(default `MAX_DOWNLOAD_BYTES` = 500 MiB) are refused up front from `Content-Length`, or aborted
+mid-stream with the partial file removed.
+
+### PDF OCR
+
+When a PDF's embedded text fails the quality heuristic, only the pages that fail it on their own
+are OCR'd; the rest keep their embedded text (`method='pytesseract_ocr_pdf_partial'`). Pages are
+rendered in grayscale batches and OCR'd concurrently. Tune with environment variables (read on
+first OCR, so loading a `.env` after import works):
+
+| Variable | Default | Effect |
+| --- | --- | --- |
+| `PDF_OCR_DPI` | `300` | Rasterization DPI (min 72). `200` is roughly 2x faster. |
+| `PDF_OCR_RENDER_BATCH` | `8` | Pages per Poppler call; bounds peak memory. |
+| `PDF_OCR_WORKERS` | `min(4, cpu_count)` | Pages OCR'd concurrently. Sets `OMP_THREAD_LIMIT=1` when > 1. |
 
 ### ZIP archives
 
@@ -104,7 +124,8 @@ register_converter(".rtf", "my_rtf_reader", convert_rtf, mime_types=["applicatio
 
 ### Parse method names
 
-`pypdf_text`, `pypdf_text_low_quality`, `pytesseract_ocr_pdf`, `pytesseract_ocr`,
+`pypdf_text`, `pypdf_text_low_quality`, `pytesseract_ocr_pdf`, `pytesseract_ocr_pdf_partial`,
+`pytesseract_ocr`,
 `markitdown_docx`, `markitdown_pptx`, `markitdown_doc`, `pypandoc_doc`, `docx2txt_doc`,
 `binary_text_doc`, `html2text`, `pandas_markdown`, `plaintext`, `xml_formatted`, `zip_archive`.
 

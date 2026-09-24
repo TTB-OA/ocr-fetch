@@ -22,7 +22,12 @@ from .converters import (
     convert_xml_to_markdown,
     looks_like_text,
 )
-from .downloader import build_download_session, download_and_convert_file
+from .downloader import (
+    DOWNLOAD_HEADERS,
+    MAX_DOWNLOAD_BYTES,
+    build_download_session,
+    download_and_convert_file,
+)
 from .errors import CONVERSION_ERROR_PREFIX, DEPENDENCY_ERROR_PREFIX, is_conversion_error
 from .filenames import sanitize_filename
 from .mime import MIME_TO_EXTENSION
@@ -39,7 +44,9 @@ from .registry import (
 __all__ = [
     "CONVERSION_ERROR_PREFIX",
     "DEPENDENCY_ERROR_PREFIX",
+    "DOWNLOAD_HEADERS",
     "EXTENSION_TO_METHOD",
+    "MAX_DOWNLOAD_BYTES",
     "MIME_TO_EXTENSION",
     "MIME_TO_METHOD",
     "build_download_session",

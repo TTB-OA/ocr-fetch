@@ -15,13 +15,40 @@ from .logging_utils import log_with_context, logger
 from .mime import MIME_TO_EXTENSION, normalize_content_type
 from .registry import convert_file_to_markdown
 
+# Some CDNs (e.g. downloads.regulations.gov) return 403 Forbidden for the default
+# `python-requests/x.y` user agent, so send browser-style request headers.
+DOWNLOAD_HEADERS: dict[str, str] = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+        "(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+    ),
+    "Accept": "*/*",
+    "Accept-Language": "en-US,en;q=0.9",
+}
+
+# Downloads come from external sources; an unbounded stream-to-disk could exhaust storage.
+MAX_DOWNLOAD_BYTES = 500 * 1024 * 1024
+
+
+def _cleanup_partial_download(file_path: str | None) -> None:
+    """Remove a partially written download, ignoring cleanup failures."""
+    if not file_path:
+        return
+    try:
+        os.remove(file_path)
+    except OSError as e:
+        logger.debug("Could not remove partial download %s: %s", file_path, e)
+
 
 def build_download_session() -> requests.Session:
-    """Create a requests Session with retry logic and no proxy env vars."""
+    """Create a requests Session with retry logic, browser headers, and no proxy env vars."""
     # Admin machines started throwing errors for invalid PROXY in 2026
-    # Set requests to ignore env vars setting proxy in this context
+    # Set requests to ignore env vars setting proxy in this context.
+    # Note: trust_env=False also disables ~/.netrc and REQUESTS_CA_BUNDLE /
+    # CURL_CA_BUNDLE, so certificate verification uses the certifi bundle only.
     session = requests.Session()
     session.trust_env = False
+    session.headers.update(DOWNLOAD_HEADERS)
     retry = Retry(
         total=3, connect=3, read=3,
         backoff_factor=0.5,
@@ -38,8 +65,12 @@ def download_and_convert_file(
     url: str,
     raw_download_dir: str,
     file_name_override: str,
+    max_bytes: int = MAX_DOWNLOAD_BYTES,
 ) -> tuple[str | None, str | None, str]:
     """Download a file, save it, convert it to Markdown.
+
+    Downloads larger than *max_bytes* are refused (or aborted mid-stream and
+    the partial file removed).
 
     Returns:
         (markdown_content, raw_file_path, parse_method).
@@ -94,13 +125,26 @@ def download_and_convert_file(
 
             content_length_header = response.headers.get('content-length')
             expected_bytes = int(content_length_header) if content_length_header and content_length_header.isdigit() else None
+
+            if expected_bytes is not None and expected_bytes > max_bytes:
+                raise RuntimeError(f"Refusing to download {expected_bytes} bytes (limit {max_bytes}): {url}")
+
             written_bytes = 0
+            oversized = False
             with open(raw_file_path, 'wb') as f:
                 for chunk in response.iter_content(chunk_size=8192):
                     if not chunk:
                         continue
-                    f.write(chunk)
                     written_bytes += len(chunk)
+                    if written_bytes > max_bytes:
+                        oversized = True
+                        break
+                    f.write(chunk)
+
+        if oversized:
+            _cleanup_partial_download(raw_file_path)
+            raw_file_path = None
+            raise RuntimeError(f"Download exceeded {max_bytes} bytes and was aborted: {url}")
 
         if written_bytes == 0:
             raise RuntimeError(f"Downloaded file is empty: {url}")

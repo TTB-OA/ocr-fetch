@@ -9,7 +9,8 @@ import re
 import shutil
 import warnings
 import xml.etree.ElementTree as StdET
-from collections.abc import Callable
+from collections.abc import Callable, Iterator
+from concurrent.futures import ThreadPoolExecutor
 
 import defusedxml.ElementTree as DefusedET
 import docx2txt
@@ -32,6 +33,63 @@ _markitdown = MarkItDown(enable_plugins=True)
 
 
 # ---------------------------------------------------------------------------
+# OCR tuning
+# ---------------------------------------------------------------------------
+# OCR dominates the wall-clock cost of parsing a scanned PDF: every page is
+# rasterized by Poppler and then read by Tesseract, both of which cost roughly a
+# second per page. The right trade-off depends on the machine, so these knobs
+# are environment-tunable:
+#
+# - PDF_OCR_DPI: rasterization resolution. 300 is Tesseract's recommended
+#   sweet spot; 200 is roughly twice as fast and usually still accurate on
+#   typewritten text.
+# - PDF_OCR_RENDER_BATCH: pages rendered per Poppler invocation. Each call
+#   re-parses the PDF and spawns a process, so batching removes per-page
+#   overhead; the batch is what bounds peak memory.
+# - PDF_OCR_WORKERS: pages OCR'd concurrently. Tesseract runs as a subprocess,
+#   so threads here genuinely overlap work.
+#
+# Resolved on first use rather than at import, because host applications
+# typically load their .env after importing this package.
+
+_OCR_SETTINGS: dict[str, int] | None = None
+
+
+def _env_int(name: str, default: int, minimum: int = 1) -> int:
+    """Read a positive integer tuning value from the environment."""
+    raw = os.getenv(name)
+    if not raw:
+        return default
+    try:
+        return max(minimum, int(raw))
+    except ValueError:
+        logger.warning("Ignoring invalid %s=%r; using %d.", name, raw, default)
+        return default
+
+
+def _ocr_settings() -> dict[str, int]:
+    """Resolve (and remember) the OCR tuning values."""
+    global _OCR_SETTINGS
+    if _OCR_SETTINGS is None:
+        settings = {
+            'dpi': _env_int('PDF_OCR_DPI', 300, minimum=72),
+            'render_batch': _env_int('PDF_OCR_RENDER_BATCH', 8),
+            'workers': _env_int('PDF_OCR_WORKERS', min(4, os.cpu_count() or 1)),
+        }
+        if settings['workers'] > 1:
+            # Tesseract's internal OpenMP parallelism fights the page-level
+            # thread pool for cores; one thread per process is faster here.
+            os.environ.setdefault('OMP_THREAD_LIMIT', '1')
+        _OCR_SETTINGS = settings
+    return _OCR_SETTINGS
+
+
+# The quality check is a heuristic; scanning megabytes of text to reach the
+# same verdict as the first few pages would cost more than it is worth.
+TEXT_QUALITY_SAMPLE_CHARS = 20_000
+
+
+# ---------------------------------------------------------------------------
 # Text quality & preprocessing helpers
 # ---------------------------------------------------------------------------
 
@@ -44,17 +102,19 @@ def _is_text_quality_good(text: str) -> bool:
     if len(stripped) < 25:
         return False
 
-    total = len(stripped)
+    sample = stripped[:TEXT_QUALITY_SAMPLE_CHARS]
+
+    total = len(sample)
     printable = 0
     alnum = 0
-    for c in stripped:
+    for c in sample:
         if c.isprintable():
             printable += 1
         if c.isalnum():
             alnum += 1
 
-    words = re.findall(r"[A-Za-z0-9]{3,}", stripped)
-    unique_words = len(set(w.lower() for w in words))
+    words = re.findall(r"[A-Za-z0-9]{3,}", sample)
+    unique_words = len({w.lower() for w in words})
 
     printable_ratio = printable / total
     alnum_ratio = alnum / total
@@ -65,57 +125,107 @@ def _is_text_quality_good(text: str) -> bool:
 
 def _preprocess_image_for_ocr(image: Image.Image) -> Image.Image:
     """Apply lightweight preprocessing to improve OCR quality."""
-    grayscale = image.convert('L')
+    # Pages rendered by Poppler in grayscale mode are already 'L'; skip the copy.
+    grayscale = image if image.mode == 'L' else image.convert('L')
     try:
         normalized = ImageOps.autocontrast(grayscale)
     except Exception:
-        grayscale.close()
+        if grayscale is not image:
+            grayscale.close()
         raise
-    if normalized is not grayscale:
+    if normalized is not grayscale and grayscale is not image:
         grayscale.close()
     result = normalized.point(lambda px: 255 if px > 180 else 0)  # type: ignore[operator]
-    if result is not normalized:
+    if result is not normalized and normalized is not image:
         normalized.close()
     return result
 
 
-def _ocr_pdf_pages(file_path: str) -> str:
-    """OCR a PDF page-by-page to avoid loading all pages in memory."""
+def _ocr_image(image: Image.Image) -> str:
+    """Preprocess and OCR one already-rendered page image."""
+    prepared = _preprocess_image_for_ocr(image)
+    try:
+        return pytesseract.image_to_string(prepared)
+    finally:
+        if prepared is not image:
+            prepared.close()
+
+
+def _page_render_batches(pages: list[int], batch_size: int) -> Iterator[list[int]]:
+    """Group sorted page numbers into contiguous runs of at most *batch_size*."""
+    batch: list[int] = []
+    for page in pages:
+        if batch and (page != batch[-1] + 1 or len(batch) >= batch_size):
+            yield batch
+            batch = []
+        batch.append(page)
+    if batch:
+        yield batch
+
+
+def _pdf_page_count(file_path: str) -> int:
+    """Page count from Poppler, falling back to a single page when unknown."""
+    try:
+        total_pages = int(pdfinfo_from_path(file_path).get('Pages', 0))
+    except Exception as e:
+        logger.debug("Could not read page count for %s: %s", file_path, e)
+        total_pages = 0
+    return total_pages if total_pages > 0 else 1
+
+
+def _ocr_pdf_pages(file_path: str, page_numbers: list[int] | None = None) -> dict[int, str]:
+    """OCR selected pages of a PDF and return ``{page_number: text}``.
+
+    Pages are rendered in contiguous batches because every ``convert_from_path``
+    call spawns Poppler and re-parses the file. The pages of a batch are OCR'd
+    concurrently since Tesseract runs out-of-process.
+
+    Args:
+        page_numbers: 1-based pages to OCR. ``None`` means the whole document.
+    """
     if shutil.which('tesseract') is None:
         raise RuntimeError("Missing required system dependency for OCR: tesseract")
     if shutil.which('pdftoppm') is None and shutil.which('pdftocairo') is None:
         raise RuntimeError("Missing required Poppler tools for OCR: pdftoppm/pdftocairo")
 
-    try:
-        pdf_info = pdfinfo_from_path(file_path)
-        total_pages = int(pdf_info.get('Pages', 0))
-    except Exception:
-        total_pages = 0
+    if page_numbers is None:
+        pages = list(range(1, _pdf_page_count(file_path) + 1))
+    else:
+        pages = sorted({p for p in page_numbers if p > 0})
 
-    if total_pages <= 0:
-        total_pages = 1
+    if not pages:
+        return {}
 
-    page_texts: list[str] = []
-    for page_num in range(1, total_pages + 1):
+    settings = _ocr_settings()
+    dpi, render_batch, workers = settings['dpi'], settings['render_batch'], settings['workers']
+
+    results: dict[int, str] = {}
+    for batch in _page_render_batches(pages, render_batch):
         images = convert_from_path(
-            file_path, dpi=300,
-            first_page=page_num, last_page=page_num, fmt='png',
+            file_path,
+            dpi=dpi,
+            first_page=batch[0],
+            last_page=batch[-1],
+            grayscale=True,
+            thread_count=min(len(batch), workers),
         )
         if not images:
             continue
 
-        image = images[0]
         try:
-            prepared = _preprocess_image_for_ocr(image)
-            try:
-                page_text = pytesseract.image_to_string(prepared)
-            finally:
-                prepared.close()
-            page_texts.append(page_text)
+            if len(images) == 1 or workers == 1:
+                texts = [_ocr_image(image) for image in images]
+            else:
+                with ThreadPoolExecutor(max_workers=min(len(images), workers)) as pool:
+                    texts = list(pool.map(_ocr_image, images))
         finally:
-            image.close()
+            for image in images:
+                image.close()
 
-    return "\n".join(page_texts)
+        for offset, page_text in enumerate(texts):
+            results[batch[0] + offset] = page_text
+
+    return results
 
 
 def _read_text_with_fallback_encodings(file_path: str, encodings: list[str]) -> str:
@@ -174,36 +284,69 @@ def _run_converter(
 # ---------------------------------------------------------------------------
 
 def convert_pdf_to_markdown(file_path: str) -> tuple[str, str]:
-    """Convert a PDF to text, falling back to OCR for scanned documents."""
+    """Convert a PDF to text, falling back to OCR for scanned documents.
+
+    OCR is only applied to the pages whose embedded text is unreadable, so a
+    mostly machine-readable PDF with a few scanned inserts keeps its good text
+    and only the bad pages are rasterized.
+    """
     try:
         with open(file_path, 'rb') as f:
             reader = pypdf.PdfReader(f)
             try:
-                extracted_pages = [page.extract_text() or "" for page in reader.pages]
-                text = "\n".join(extracted_pages)
+                page_texts = [page.extract_text() or "" for page in reader.pages]
             except Exception as e:
                 if "EI stream not found" in str(e):
                     logger.warning("EI stream not found in %s, switching to OCR.", file_path)
-                    text = ""
+                    page_texts = []
                 else:
                     raise
+
+        text = "\n".join(page_texts)
 
         if _is_text_quality_good(text):
             logger.info("Extracted text from text-based PDF: %s", file_path)
             return text, 'pypdf_text'
 
-        logger.info("Extracted text quality is low. Performing OCR fallback: %s", file_path)
+        # Page count is unknown when extraction failed, so OCR the whole document.
+        pages_needing_ocr: list[int] | None
+        if page_texts:
+            pages_needing_ocr = [
+                index + 1
+                for index, page_text in enumerate(page_texts)
+                if not _is_text_quality_good(page_text)
+            ]
+            if not pages_needing_ocr:
+                logger.info("PDF text is good page-by-page, skipping OCR: %s", file_path)
+                return text, 'pypdf_text'
+        else:
+            pages_needing_ocr = None
+
+        logger.info(
+            "Extracted text quality is low. Performing OCR fallback on %s page(s): %s",
+            len(pages_needing_ocr) if pages_needing_ocr is not None else "all", file_path,
+        )
         try:
-            ocr_text = _ocr_pdf_pages(file_path)
+            ocr_pages = _ocr_pdf_pages(file_path, pages_needing_ocr)
         except Exception as ocr_error:
             if text.strip():
                 logger.warning("OCR fallback unavailable for %s, returning low-quality text: %s", file_path, ocr_error)
                 return text, 'pypdf_text_low_quality'
             raise
 
-        if ocr_text.strip():
-            logger.info("OCR succeeded on scanned PDF: %s", file_path)
-            return ocr_text, 'pytesseract_ocr_pdf'
+        if any(page_text.strip() for page_text in ocr_pages.values()):
+            if page_texts:
+                merged = [
+                    ocr_pages[index + 1] if ocr_pages.get(index + 1, "").strip() else page_text
+                    for index, page_text in enumerate(page_texts)
+                ]
+            else:
+                merged = [ocr_pages[page] for page in sorted(ocr_pages)]
+
+            partial = bool(page_texts) and len(ocr_pages) < len(page_texts)
+            method = 'pytesseract_ocr_pdf_partial' if partial else 'pytesseract_ocr_pdf'
+            logger.info("OCR succeeded on scanned PDF (%s): %s", method, file_path)
+            return "\n".join(merged), method
 
         logger.warning("OCR returned empty output for %s; returning extracted text fallback.", file_path)
         return text, 'pypdf_text_low_quality'
@@ -300,11 +443,7 @@ def convert_image_to_markdown(file_path: str) -> tuple[str, str]:
     """Convert an image file (JPG, PNG, etc.) to text using OCR."""
     def _inner() -> str:
         with Image.open(file_path) as image:
-            prepared = _preprocess_image_for_ocr(image)
-            try:
-                return pytesseract.image_to_string(prepared)
-            finally:
-                prepared.close()
+            return _ocr_image(image)
     return _run_converter('pytesseract_ocr', file_path, _inner)
 
 
