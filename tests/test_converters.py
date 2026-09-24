@@ -53,6 +53,19 @@ def test_image_fixtures(path: Path):
     _assert_converts(path)
 
 
+def test_pptx_converts(tmp_path: Path):
+    from pptx import Presentation
+
+    deck = Presentation()
+    slide = deck.slides.add_slide(deck.slide_layouts[1])
+    slide.shapes.title.text = "Quarterly wine labeling update"
+    path = tmp_path / "deck.pptx"
+    deck.save(str(path))
+    content, method = convert_file_to_markdown(str(path))
+    assert method == "markitdown_pptx"
+    assert "Quarterly wine labeling update" in content
+
+
 def test_unsupported_extension_falls_back_to_text(tmp_path: Path):
     odd = tmp_path / "notes.unknownext"
     odd.write_text("hello world", encoding="utf-8")

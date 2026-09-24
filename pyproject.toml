@@ -9,7 +9,9 @@ dependencies = [
     "docx2txt>=0.9",
     "html2text>=2025.4.15",
     "mammoth>=1.12.0",
-    "markitdown>=0.1.4",
+    # Bare markitdown lacks python-pptx. The docx extra is omitted because it
+    # caps mammoth below the version pinned above.
+    "markitdown[pptx]>=0.1.4",
     "openpyxl>=3.1.5",
     "pandas>=3.0.1",
     "pdf2image>=1.17.0",
